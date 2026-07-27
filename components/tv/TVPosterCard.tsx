@@ -238,34 +238,44 @@ export const TVPosterCard: React.FC<TVPosterCardProps> = ({
         : null;
 
       return (
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            gap: scaleSize(8),
-          }}
-        >
-          {episodeLabel && (
-            <Text
-              style={{
-                fontSize: typography.callout,
-                color: "#FFFFFF",
-                fontWeight: "500",
-              }}
-            >
-              {episodeLabel}
-            </Text>
-          )}
-          {duration && (
-            <>
-              <Text style={{ color: "#FFFFFF", fontSize: typography.callout }}>
-                •
+        <View>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              gap: scaleSize(8),
+            }}
+          >
+            {episodeLabel && (
+              <Text
+                style={{
+                  fontSize: typography.callout,
+                  // color: "#FFFFFF",
+                  // fontWeight: "500",
+                  color: "#9CA3AF",
+                }}
+              >
+                {episodeLabel}
               </Text>
-              <Text style={{ fontSize: typography.callout, color: "#FFFFFF" }}>
-                {duration}
-              </Text>
-            </>
-          )}
+            )}
+            {duration && (
+              <>
+                <Text
+                  style={{ color: "#9CA3AF", fontSize: typography.callout }}
+                >
+                  •
+                </Text>
+                <Text
+                  style={{ fontSize: typography.callout, color: "#9CA3AF" }}
+                >
+                  {duration}
+                </Text>
+              </>
+            )}
+          </View>
+          <Text style={{ fontSize: typography.callout, color: "#9CA3AF" }}>
+            {item.SeriesName}
+          </Text>
         </View>
       );
     }
@@ -491,7 +501,7 @@ export const TVPosterCard: React.FC<TVPosterCardProps> = ({
     if (item.Type === "Episode") {
       return (
         <Text
-          numberOfLines={2}
+          numberOfLines={1}
           style={{
             fontSize: typography.callout,
             color: "#FFFFFF",
@@ -593,17 +603,8 @@ export const TVPosterCard: React.FC<TVPosterCardProps> = ({
         <View
           style={{ marginTop: scaleSize(12), paddingHorizontal: scaleSize(4) }}
         >
-          {item.Type === "Episode" ? (
-            <>
-              {renderSubtitle()}
-              {renderTitle()}
-            </>
-          ) : (
-            <>
-              {renderTitle()}
-              {renderSubtitle()}
-            </>
-          )}
+          {renderTitle()}
+          {renderSubtitle()}
         </View>
       )}
     </View>

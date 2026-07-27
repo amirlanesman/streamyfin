@@ -58,7 +58,8 @@ export const TVSettingsToggle: React.FC<TVSettingsToggleProps> = ({
             width: scaleSize(56),
             height: scaleSize(32),
             borderRadius: scaleSize(16),
-            backgroundColor: value ? "#FFFFFF" : "#4B5563",
+            // Track: Vibrant Green when ON, Dark Gray/Muted when OFF
+            backgroundColor: value ? "#34C759" : "#3A3A3C",
             justifyContent: "center",
             paddingHorizontal: scaleSize(2),
           }}
@@ -68,7 +69,8 @@ export const TVSettingsToggle: React.FC<TVSettingsToggleProps> = ({
               width: scaleSize(28),
               height: scaleSize(28),
               borderRadius: scaleSize(14),
-              backgroundColor: value ? "#000000" : "#FFFFFF",
+              // Knob: Always White for clean contrast
+              backgroundColor: "#FFFFFF",
               alignSelf: value ? "flex-end" : "flex-start",
             }}
           />

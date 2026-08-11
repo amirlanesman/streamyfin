@@ -43,6 +43,7 @@ interface Props extends ViewProps {
   isFirstSection?: boolean;
   onItemFocus?: (item: BaseItemDto) => void;
   parentId?: string;
+  isHomePage?: boolean;
 }
 
 type Typography = ReturnType<typeof useScaledTVTypography>;
@@ -124,6 +125,7 @@ export const InfiniteScrollingCollectionList: React.FC<Props> = ({
   isFirstSection = false,
   onItemFocus,
   parentId,
+  isHomePage,
   ...props
 }) => {
   const typography = useScaledTVTypography();
@@ -222,7 +224,15 @@ export const InfiniteScrollingCollectionList: React.FC<Props> = ({
   const renderItem = useCallback(
     ({ item, index }: { item: BaseItemDto; index: number }) => {
       const isFirstItem = isFirstSection && index === 0;
-
+      console.log({
+        title,
+        isHomePage,
+        use: settings?.useEpisodeImagesForNextUp,
+        show: settings?.showSeriesPosterOnEpisode,
+        is: isHomePage
+          ? settings?.useEpisodeImagesForNextUp
+          : !settings?.showSeriesPosterOnEpisode,
+      });
       return (
         <View style={{ marginRight: ITEM_GAP }}>
           <TVPosterCard
@@ -233,7 +243,11 @@ export const InfiniteScrollingCollectionList: React.FC<Props> = ({
             hasTVPreferredFocus={isFirstItem}
             onFocus={() => handleItemFocus(item)}
             width={itemWidth}
-            preferEpisodeImage={settings?.useEpisodeImagesForNextUp}
+            preferEpisodeImage={
+              isHomePage
+                ? settings?.useEpisodeImagesForNextUp
+                : !settings?.showSeriesPosterOnEpisode
+            }
           />
         </View>
       );

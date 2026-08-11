@@ -111,7 +111,7 @@ export const TVPosterCard: React.FC<TVPosterCardProps> = ({
   glowColor = "white",
   scaleAmount = 1.05,
   imageUrlGetter,
-  preferEpisodeImage = false,
+  preferEpisodeImage = true,
 }) => {
   const api = useAtomValue(apiAtom);
   const posterSizes = useScaledTVPosterSizes();
@@ -143,6 +143,11 @@ export const TVPosterCard: React.FC<TVPosterCardProps> = ({
     if (orientation === "horizontal") {
       // Episode: prefer series thumb image for consistent look (like hero section)
       if (item.Type === "Episode") {
+        console.log({
+          name: item.Name,
+          preferEpisodeImage,
+          primary: item.ImageTags?.Primary,
+        });
         // Opt-in: use the episode's own image instead of the series thumb.
         if (preferEpisodeImage && item.ImageTags?.Primary) {
           return `${api.basePath}/Items/${item.Id}/Images/Primary?fillHeight=600&quality=80&tag=${item.ImageTags.Primary}`;
